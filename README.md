@@ -4,7 +4,7 @@ This is a basic Laravel project.
 
 ## Requirements
 
-- PHP >= 8.0
+- PHP >= 8.2
 - Composer
 - MySQL or any other database supported by Laravel
 - Node.js and npm (for frontend assets)
@@ -14,8 +14,8 @@ This is a basic Laravel project.
 1. **Clone the repository**:
 
     ```bash
-    git clone https://github.com/your-username/your-laravel-project.git
-    cd your-laravel-project
+    git clone https://github.com/FahadJrdev/p2p.git
+    cd p2p
     ```
 
 2. **Install dependencies**:
@@ -52,6 +52,8 @@ This is a basic Laravel project.
 7. **Run the development server**:
 
     ```bash
+    npm install
+    npm run build
     php artisan serve
     ```
 
