@@ -1,0 +1,29 @@
+html {
+    font-size: 100%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #09be8b;
+  border-radius: 3px;
+}
