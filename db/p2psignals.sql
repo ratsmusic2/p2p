@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 11:52 PM
+-- Generation Time: Jun 27, 2024 at 09:08 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -149,8 +149,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('L1tedWAjCZABgmlHfQfJo9m74Ynu42SfJneU3En8', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRzhrQjZDQ1JQSTlYZldjd3FNNTJMRHpXNjNxMnZRQ3hNZXNKU2RWSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1719433230),
-('pEWsOg2YKmp2ES6kEYAZzbdyE7DoPjA4pTSaLP9Q', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibzF0Z2FzNDNOYmZZSk1NemUzbnFxOE1yMDZHbGxPcHZmQ0ZlUHZweCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1719438570);
+('kaz5D2EuuTVN9p2fpyD5uzkPoSBZf88khLF9xQJl', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib25vQVdzb2puQ2h1YThWQ29DTGR0RlRyRHhHTWhROHhaY0NFTlBlRyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fX0=', 1719472073);
 
 -- --------------------------------------------------------
 
@@ -174,7 +173,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'ishan', 'ishan@gmail.com', NULL, '$2y$12$jRf6qNlBV/3LYQ.YRZBZ9OqzAs3JbxCV6AoFmTRT7etlD1ioWOS1q', NULL, '2024-06-26 14:13:12', '2024-06-26 14:13:12');
+(1, 'Admin', 'admin@gmail.com', NULL, '$2y$12$jRf6qNlBV/3LYQ.YRZBZ9OqzAs3JbxCV6AoFmTRT7etlD1ioWOS1q', NULL, '2024-06-26 14:13:12', '2024-06-26 14:13:12');
 
 --
 -- Indexes for dumped tables
