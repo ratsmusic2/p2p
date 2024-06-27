@@ -32,6 +32,9 @@ export default {
             boxShadow: {
                 drop: "0px 4px 10px #00072D",
             },
+            backgroundImage: {
+              'table-header-gradient': 'linear-gradient(180deg, #07533E 0%, #075555 100%)',
+            },
         },
     },
 
