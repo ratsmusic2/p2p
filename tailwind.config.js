@@ -34,6 +34,7 @@ export default {
             },
             backgroundImage: {
               'table-header-gradient': 'linear-gradient(180deg, #07533E 0%, #075555 100%)',
+              'pie-gradient': 'linear-gradient(180deg, #2C8337 0%, #055254 100%)',
             },
             gridTemplateColumns: {
               'custom-fit': 'repeat(auto-fit, minmax(100px, 1fr))',

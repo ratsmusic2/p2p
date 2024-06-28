@@ -6,3 +6,7 @@
     @apply bg-gradient-to-r;
     background: linear-gradient(92.58deg, #2F8532 0.42%, #1D7550 15.32%, #248971 68.61%, #004A4F 98.76%);
 }
+
+.pie-gradient {
+    background: linear-gradient(180deg, #2C8337 0%, #055254 100%);
+}

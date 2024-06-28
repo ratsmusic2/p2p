@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="scripts">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </x-slot>
     <div class="breadcrumb mb-4">
         <p class="text-sm text-gray-500"><span class="mr-2">Pages</span> / <span class="text-white ml-2">Exchange Kucoin</span></p>
         <h1 class="text-xl font-semibold my-2">Exchange Kucoin</h1>
@@ -299,32 +302,135 @@
             </div>
             
             <!-- Graph -->
-            <div class="flex gap-5 mb-6 flex-col md:flex-row">
-            <div class="bg-secondaryBg p-4 rounded-lg w-full">
+            <div class="grid grid-cols-responsive-fit sm:grid-cols-custom-fit gap-4 mb-6">
+                <div class="bg-secondaryBg p-4 rounded-lg w-full">
                     <div class="font-bold">Volumen de compra</div>
-                    <div class="graph p-5"></div>
-            </div>
-            <div class="bg-secondaryBg p-4 rounded-lg w-full">
-                <div class="font-bold">Volumen de venta</div>
-                <div class="graph p-5"></div>
+                    <div class="graph">
+                        <canvas id="buys-chart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-secondaryBg p-4 rounded-lg w-full">
+                    <div class="font-bold">Volumen de venta</div>
+                    <div class="graph">
+                        <canvas id="sales-chart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // for toggling tabs
-            const tab1 = document.querySelector('.tab-1');
-            const tab2 = document.querySelector('.tab-2');
-
-            tab1.addEventListener('click', () => {
-                tab1.classList.add('bg-brand', 'rounded-tl-lg', 'rounded-tr-lg');
-                tab2.classList.remove('bg-brand', 'rounded-tl-lg', 'rounded-tr-lg');
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx_buys_chart = document.getElementById('buys-chart').getContext('2d');
+            const greenGradient = ctx_buys_chart.createLinearGradient(0, 0, 0, ctx_buys_chart.canvas.height);
+            greenGradient.addColorStop(0, '#31AF36');
+            greenGradient.addColorStop(1, 'rgba(38, 146, 42, 0.2)');
+            new Chart(ctx_buys_chart, {
+                type: 'line',
+                data: {
+                    labels: ['USDT', 'BTC', 'BNB', 'ETH', 'FDUSD', 'DAI', 'XRP', 'DOGE', 'ADA'],
+                    datasets: [{
+                        label: 'Buy',
+                        backgroundColor: greenGradient,
+                        data: [925, 510, 480, 460, 450, 440, 430, 420, 415],
+                        fill: true,
+                        borderColor: '#58D764',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: 'white',
+                            },
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    // Display only the first, middle, and last ticks
+                                    if (index === 0 || index === Math.floor(values.length / 2) || index === values.length - 1) {
+                                        return value;
+                                    } else {
+                                        return '';
+                                    }
+                                },
+                                maxTicksLimit: 6,
+                                color: 'white',
+                            },
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        customCanvasBackgroundColor: {
+                            color: 'white',
+                        }
+                    }
+                }
             });
-
-            tab2.addEventListener('click', () => {
-                tab2.classList.add('bg-brand', 'rounded-tl-lg', 'rounded-tr-lg');
-                tab1.classList.remove('bg-brand', 'rounded-tl-lg', 'rounded-tr-lg');
+            var ctx_sales_chart = document.getElementById('sales-chart').getContext('2d');
+            const redGradient = ctx_sales_chart.createLinearGradient(0, 0, 0, ctx_sales_chart.canvas.height);
+            redGradient.addColorStop(0, '#FF0000');
+            redGradient.addColorStop(1, 'rgb(228, 142, 142, 0.2)');
+            new Chart(ctx_sales_chart, {
+                type: 'line',
+                data: {
+                    labels: ['USDT', 'BTC', 'BNB', 'ETH', 'FDUSD', 'DAI', 'XRP', 'DOGE', 'ADA'],
+                    datasets: [{
+                        label: 'Sell',
+                        backgroundColor: redGradient,
+                        data: [925, 510, 480, 460, 450, 440, 430, 420, 415],
+                        fill: true,
+                        borderColor: '#FA0707',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: 'white',
+                            },
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    // Display only the first, middle, and last ticks
+                                    if (index === 0 || index === Math.floor(values.length / 2) || index === values.length - 1) {
+                                        return value;
+                                    } else {
+                                        return '';
+                                    }
+                                },
+                                maxTicksLimit: 6,
+                                color: 'white'
+                            },
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        customCanvasBackgroundColor: {
+                            color: 'white',
+                        }
+                    }
+                }
             });
         });
     </script>

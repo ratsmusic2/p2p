@@ -1,4 +1,7 @@
 <x-app-layout>
+    <x-slot name="scripts">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </x-slot>
     <div class="breadcrumb mb-4">
         <p class="text-sm text-gray-500"><span class="mr-2">Pages</span> / <span class="text-white ml-2">Dashboard</span></p>
         <h1 class="text-xl font-semibold my-2">Dashboard</h1>
@@ -179,11 +182,13 @@
                 </button>
             </div>
             <div class="bg-secondaryBg text-white p-6 rounded-lg shadow-lg w-full flex flex-col justify-between items-center">
-                <div class="graph py-24"></div>
+                <div class="graph pie-gradient rounded-lg p-3">
+                    <canvas id="daily-sales-donut-chart"></canvas>
+                </div>
                 <div class="flex justify-between items-center w-full">
                     <div>
-                        <h3 class="text-lg font-medium">Daily sales</h3>
-                        <p class="text-sm text-gray-400">(+15%) increase in today sales.</p>
+                        <h3 class="text-lg font-medium">Exchange más usado</h3>
+                        <p class="text-sm text-gray-400">Binance, KuCoin y OkEx</p>
                     </div>
                     <div class="flex gap-2">
                         <button>
@@ -197,7 +202,9 @@
         <div class="flex flex-col md:flex-row gap-5 my-8">
             <!-- Website views card -->
             <div class="w-full p-4 bg-secondaryBg rounded-lg shadow-md">
-                <div class="graph py-24"></div>
+                <div class="graph bg-[#195B46] rounded-lg p-3">
+                    <canvas id="website-view-chart"></canvas>
+                </div>
                 <div class="flex justify-between items-center pb-4 border-b border-[#09BE8B]">
                     <div>
                         <h3 class="text-lg font-medium">Website views</h3>
@@ -217,7 +224,9 @@
             </div>
             <!-- Daily sales card -->
             <div class="w-full p-4 bg-secondaryBg rounded-lg shadow-md">
-                <div class="graph py-24"></div>
+                <div class="graph bg-[#25324A] rounded-lg p-3">
+                    <canvas id="daily-sales-chart"></canvas>
+                </div>
                 <div class="flex justify-between items-center pb-4 border-b border-[#09BE8B]">
                     <div>
                         <h3 class="text-lg font-medium">Daily sales</h3>
@@ -237,4 +246,160 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx_daily_sales_donut_chart = document.getElementById('daily-sales-donut-chart').getContext('2d');
+            new Chart(ctx_daily_sales_donut_chart, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Binance', 'KuCoin', 'OkEx'],
+                    datasets: [{
+                        label: 'Usage of Exchange',
+                        data: [15, 30, 60],
+                        backgroundColor: [
+                            '#E5B00C',
+                            '#23A98C',
+                            '#00072D',
+                        ],
+                        borderColor: [
+                            '#E5B00C',
+                            '#23A98C',
+                            '#00072D'
+                        ],
+                        borderJoinStyle: 'round',
+                        spacing: 10,
+                        borderRadius: 10,
+                        borderWidth: 1
+                    }],
+                },
+                options: {
+                    radius: '100%',
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: 'rgb(255, 255, 255)'
+                            }
+                        },
+                        customCanvasBackgroundColor: {
+                            color: 'white',
+                        }
+                    }
+                }
+            });
+            var ctx_website_view = document.getElementById('website-view-chart').getContext('2d');
+            new Chart(ctx_website_view, {
+                type: 'bar',
+                data: {
+                    labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+                    datasets: [{
+                        label: 'Views',
+                        data: [42, 19, 23, 35, 22, 48, 35],
+                        backgroundColor: [
+                            '#09BE8B',
+                            '#09BE8B',
+                            '#09BE8B',
+                            '#09BE8B',
+                            '#09BE8B',
+                            '#09BE8B',
+                            '#09BE8B'
+                        ],
+                        borderRadius: 10,
+                        barThickness: 10,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            grid: {
+                                color: '#09BE8B',
+                                borderDash: [5, 5],
+                            },
+                            ticks: {
+                                color: 'white',
+                            },
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    if (index === 0 || index === values.length - 1) {
+                                        return value;
+                                    } else {
+                                        return '';
+                                    }
+                                },
+                                color: 'white'
+                            },
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        customCanvasBackgroundColor: {
+                            color: 'white',
+                        }
+                    }
+                }
+            });
+            var ctx_daily_sales = document.getElementById('daily-sales-chart').getContext('2d');
+            new Chart(ctx_daily_sales, {
+                type: 'line',
+                data: {
+                    labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Sales',
+                        backgroundColor: '#58D764',
+                        data: [125, 250, 175, 225, 320, 350, 250, 200, 300],
+                        fill: false,
+                        borderColor: '#58D764',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: 'white',
+                            },
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                borderDash: [1, 1],
+                            },
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    // Display only the first, middle, and last ticks
+                                    if (index === 0 || index === Math.floor(values.length / 2) || index === values.length - 1) {
+                                        return value;
+                                    } else {
+                                        return '';
+                                    }
+                                },
+                                maxTicksLimit: 6,
+                                color: 'white'
+                            },
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                        customCanvasBackgroundColor: {
+                            color: 'white',
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 </x-app-layout>
